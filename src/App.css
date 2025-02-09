@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+.bg-custom {
+  background-color: #171717; /* Цвет фона */
+  background-size: cover; /* Растягивание */
+  background-position: center; /* Центрирование */
+  background-attachment: fixed; /* Фиксированный фон */
+  min-height: 100vh; /* Минимальная высота = высота экрана */
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
