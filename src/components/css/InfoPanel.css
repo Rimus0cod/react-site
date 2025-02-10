@@ -1,0 +1,32 @@
+.info-panel {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  background-color: #2a2a2a;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0px 50vh;
+  margin-top: -18.5%;
+  width: 30%;
+}
+
+.info-block {
+  text-align: center;
+}
+
+.info-block h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.info-block p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+  color: #bfbfbf;
+}
+
+.info-block .value {
+  font-weight: bold;
+  color: #fff;
+}

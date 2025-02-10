@@ -1,0 +1,63 @@
+.name {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 23vh;
+  margin-top: 6vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.card {
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 230px;
+  height: 360px; /* Добавляем единицу измерения */
+  text-align: center;
+  border-radius: 5px;
+  margin: 1px;
+  padding-bottom: 10px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.card-img {
+  width: 180px;
+  height: 250px;
+  object-fit: cover;
+  padding-top: 10px;
+  border-radius: 5px;
+  opacity: 1;
+  border-radius: 10px;
+  margin-bottom: 1.2em;
+}
+
+.read {
+  text-decoration: 0;
+  color: #fff;
+  background-color: #1976d2;
+  padding: 0.5vh 7vh;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.read:hover {
+  background-color: #780606;
+}
+
+#addBookmark {
+  color: #fff;
+  background-color: #1976d2;
+  border: none;
+  outline: none;
+  margin-top: 1.2em;
+  border-radius: 10px;
+  padding: 0.6vh 2vh;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+#addBookmark:hover {
+  background-color: #780606;
+  justify-content: space-around;
+  transform: scale(0.987);
+}

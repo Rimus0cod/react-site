@@ -1,0 +1,17 @@
+.genre-list {
+  width: 30%;
+  color: #fff;
+  display: flex;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 50vh;
+  flex-wrap: wrap;
+}
+
+.genre {
+  border: none;
+  background-color: #333;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 2px;
+}

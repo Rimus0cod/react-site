@@ -1,0 +1,76 @@
+.slider-container {
+  position: relative;
+  width: 30%;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 10px 50vh;
+}
+
+.slider-tabs {
+  display: flex;
+  background-color: #333;
+}
+
+.slider-tab {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 1rem;
+}
+
+.slider-tab.active {
+  background-color: #444;
+  font-weight: bold;
+  color: #fff;
+}
+
+.slider-content {
+  display: none;
+  padding: 20px; /* Внутренние отступы для текста */
+  min-height: 225px;
+}
+
+.slider-content.active {
+  display: block;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.disc {
+  text-decoration: underline;
+  color: #c9c9c9;
+}
+
+.normis-text {
+  font-size: 16px;
+  overflow: hidden;
+  opacity: 1;
+  transition: 0.3s;
+  color: #fff;
+  scrollbar-width: none;
+}
+
+.hidden-text {
+  display: none;
+  opacity: 1;
+  transition: 0.3s;
+  scrollbar-width: 300;
+}
+
+.hidden {
+  display: none; /* Главы скрыты до появления */
+}
+
+.more {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff91;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}

@@ -7,7 +7,7 @@ import Catalog from "./pages/Сatalog";
 import Profile from "./pages/Profile";
 import Solo from "./manga/sololeveling";
 import Ghoul from "./manga/ghoul";
-import Ghoul2 from "./manga/ghoul_re"; // Переименуй файл, т.к. `:` в имени файла не поддерживается
+import Ghoul2 from "./manga/ghoul_re";
 
 function App() {
   return (
