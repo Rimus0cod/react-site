@@ -74,3 +74,97 @@
   cursor: pointer;
   transition: 0.3s ease;
 }
+
+.slider-content h1 {
+  text-decoration: underline;
+  color: #c9c9c9;
+}
+
+.chapter {
+  margin: 5px 0;
+  color: #fff;
+}
+
+.chapter h1 {
+  color: #fff;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.button {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+  transition: 0.5s;
+}
+
+.button:hover {
+  background: #121212;
+}
+
+.slider-content {
+  max-height: 100px;
+  width: 100%
+}
+
+.slider-content a {
+  text-decoration: none;
+  color: #c0c0c0;
+  transition: 0.4s ease;
+}
+
+.slider-content a:hover {
+  color: #007bff;
+}
+
+#chapter-list {
+  max-height: 150px; /* Высота контейнера */
+  overflow-y: auto; /* Включение вертикальной прокрутки */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Расстояние между главами */
+  padding: 0; /* Убедитесь, что нет лишних отступов */
+  margin: 0; /* Убедитесь, что нет лишних внешних отступов */
+  box-sizing: border-box; /* Учитываем padding в размерах */
+  scrollbar-width: none;
+}
+
+#reverse-list {
+  max-width: 24%;
+  text-align: start;
+  margin-top: 10px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.5s ease-in-out;
+  background: none;
+  font-weight: 550;
+  position: relative;
+}
+
+#reverse-list:hover {
+  color: #1976d2;
+}
+
+#reverse-list::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: 0.3s;
+}
+
+#reverse-list:hover::before {
+  width: 100%;
+}

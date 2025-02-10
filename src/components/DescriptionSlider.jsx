@@ -1,40 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./css/DescriptionSlider.css";
 
-const DescriptionSlider = ({ description, totalChapters, fetchChapters }) => {
-  const [activeTab, setActiveTab] = useState("description");
-  const [showMore, setShowMore] = useState(false);
-  const [chapters, setChapters] = useState([]);
-  const [isReversed, setIsReversed] = useState(false);
+const DescriptionSlider = ({ description, totalChapters }) => {
+  const [activeTab, setActiveTab] = useState("description"); // Табы
+  const [showMore, setShowMore] = useState(false); // Описание (скрыто/показано)
+  const [chapters, setChapters] = useState([]); // Загруженные главы
+  const [isReversed, setIsReversed] = useState(false); // Направление загрузки
+  const [loadedChapters, setLoadedChapters] = useState(0); // Кол-во загруженных глав
 
-  const chaptersPerLoad = 10; // Сколько загружаем за раз
+  const chaptersPerLoad = 10; // Количество глав за раз
 
+  // Функция загрузки глав
+  const loadChapters = useCallback(
+    (reset = false) => {
+      let start, end;
+      if (reset) {
+        setChapters([]); // Очистка перед полной перезагрузкой
+        setLoadedChapters(0);
+        start = isReversed ? totalChapters : 1;
+      } else {
+        start = isReversed
+          ? totalChapters - loadedChapters
+          : loadedChapters + 1;
+      }
+
+      end = Math.min(
+        isReversed
+          ? Math.max(start - chaptersPerLoad + 1, 1)
+          : loadedChapters + chaptersPerLoad,
+        totalChapters
+      );
+
+      const newChapters = [];
+      for (
+        let i = start;
+        isReversed ? i >= end : i <= end;
+        i += isReversed ? -1 : 1
+      ) {
+        newChapters.push({
+          id: i,
+          link: `./chapters/${i}/index.html`, // Универсальный путь
+        });
+      }
+
+      setChapters((prev) => (reset ? newChapters : [...prev, ...newChapters]));
+      setLoadedChapters((prev) => prev + chaptersPerLoad);
+    },
+    [isReversed, loadedChapters, totalChapters]
+  );
+
+  // Загрузка при первом рендере
   useEffect(() => {
-    loadChapters(true); // Загружаем главы при монтировании или изменении порядка
-  }, [isReversed, totalChapters]);
-
-  const loadChapters = async (reset = false) => {
-    if (!fetchChapters) return; // Если нет функции для загрузки, выходим
-
-    const loadedCount = reset ? 0 : chapters.length;
-    const start = isReversed ? totalChapters - loadedCount : loadedCount + 1;
-    const end = Math.min(
-      isReversed
-        ? Math.max(start - chaptersPerLoad + 1, 1)
-        : loadedCount + chaptersPerLoad,
-      totalChapters
-    );
-
-    try {
-      const newChapters = await fetchChapters(start, end, isReversed);
-      setChapters(reset ? newChapters : [...chapters, ...newChapters]);
-    } catch (error) {
-      console.error("Ошибка загрузки глав:", error);
-    }
-  };
+    loadChapters(true);
+  }, [isReversed, totalChapters, loadChapters]);
 
   return (
     <div className="slider-container">
+      {/* Табы */}
       <div className="slider-tabs">
         <div
           className={`slider-tab ${
@@ -52,18 +74,22 @@ const DescriptionSlider = ({ description, totalChapters, fetchChapters }) => {
         </div>
       </div>
 
+      {/* Описание */}
       {activeTab === "description" && (
         <div className="slider-content">
           <h2 className="disc">Описание</h2>
           <p className="normis-text">
             {showMore ? description : `${description.substring(0, 100)}...`}
           </p>
-          <button className="more" onClick={() => setShowMore(!showMore)}>
-            {showMore ? "Меньше" : "Больше"}
-          </button>
+          {description.length > 100 && (
+            <button className="more" onClick={() => setShowMore(!showMore)}>
+              {showMore ? "Меньше" : "Больше"}
+            </button>
+          )}
         </div>
       )}
 
+      {/* Главы */}
       {activeTab === "chapters" && (
         <div className="slider-content">
           <h1>Список глав</h1>
@@ -77,7 +103,9 @@ const DescriptionSlider = ({ description, totalChapters, fetchChapters }) => {
                 e.target.scrollHeight - e.target.scrollTop <=
                 e.target.clientHeight + 10
               ) {
-                loadChapters();
+                if (loadedChapters < totalChapters) {
+                  loadChapters();
+                }
               }
             }}
           >

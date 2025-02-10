@@ -3,13 +3,14 @@ import MangaCard from "../components/MangaCard";
 import InfoPanel from "../components/InfoPanel";
 import GenreList from "../components/GenreList";
 import DescriptionSlider from "../components/DescriptionSlider";
+import solo from "../image/solo.png";
 
 const mangaData = {
   title: "Solo Leveling",
-  image: "../image/solo.png",
-  readLink: "./chapters/1/index.html",
+  image: solo,
+  readLink: "./chapters/sololeveling/1/index.html",
   bookmarkId: "1",
-  chapters: "205",
+  chapters: 205, // Исправил на число, чтобы проще работать
   status: "Закончен",
   translation: "Закончен",
   ageRating: "18",
@@ -20,22 +21,28 @@ const mangaData = {
 
 function App() {
   return (
-    <div>
-      <MangaCard
-        title={mangaData.title}
-        image={mangaData.image}
-        readLink={mangaData.readLink}
-        bookmarkId={mangaData.bookmarkId}
-      />
-      <InfoPanel
-        chapters={mangaData.chapters}
-        status={mangaData.status}
-        translation={mangaData.translation}
-        ageRating={mangaData.ageRating}
-      />
-      <GenreList genres={mangaData.genres} />
-      <DescriptionSlider description={mangaData.description} />
-    </div>
+    <>
+      <div>
+        <MangaCard
+          title={mangaData.title}
+          image={mangaData.image}
+          readLink={mangaData.readLink}
+          bookmarkId={mangaData.bookmarkId}
+        />
+        <InfoPanel
+          chapters={mangaData.chapters}
+          status={mangaData.status}
+          translation={mangaData.translation}
+          ageRating={mangaData.ageRating}
+        />
+        <GenreList genres={mangaData.genres} />
+        {/* Передаём totalChapters в DescriptionSlider */}
+        <DescriptionSlider
+          description={mangaData.description}
+          totalChapters={mangaData.chapters}
+        />
+      </div>
+    </>
   );
 }
 

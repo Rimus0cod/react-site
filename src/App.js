@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Solo from "./manga/sololeveling";
 import Ghoul from "./manga/ghoul";
 import Ghoul2 from "./manga/ghoul_re";
+import "./index.css";
 
 function App() {
   return (
