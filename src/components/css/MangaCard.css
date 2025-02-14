@@ -7,11 +7,11 @@
   position: relative;
 }
 
-.card {
+.card-man {
   position: relative;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 220px;
-  height: 400px;
+  width: 250px;
+  height: 350px;
   text-align: center;
   border-radius: 5px;
   margin: 1px;
@@ -22,7 +22,7 @@
 
 .card-img {
   width: 210px;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
   padding-top: 10px;
   border-radius: 5px;

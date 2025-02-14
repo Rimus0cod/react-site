@@ -1,56 +1,51 @@
-import React, { Component } from "react";
-import { Card, Container, CardGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import solo from "../image/solo.png";
-import ghoul from "../image/orig.jpg";
-import ghoul2 from "../image/resoi.jpg";
-import "../App.css";
+import React from "react";
+import MangaCard from "../components/HomeManga"; // Импортируем компонент
+import "./css/Home.css"; // Подключаем стили
+import Ghoul from "../image/orig.jpg";
+import Solo from "../image/solo.png";
+import Ghoul2 from "../image/resoi.jpg";
 
-export default class Home extends Component {
-  render() {
-    return (
-      <Container className="bg-custom">
-        <CardGroup>
-          <Card
-            className="m-1 mt-4"
-            style={{ width: "220px", height: "320px" }}
-          >
-            <Link to="/manga/sololeveling">
-              <Card.Img
-                variant="top"
-                src={solo}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </Link>
-          </Card>
+const mangaList = [
+  {
+    title: "Tokyo Ghoul",
+    image: Ghoul,
+    type: "Manga",
+    link: "/manga/ghoul",
+  },
+  {
+    title: "Tokyo Ghoul:re",
+    image: Ghoul2,
+    type: "Manga",
+    link: "/manga/ghoul-re",
+  },
+  {
+    title: "Solo Leveling",
+    image: Solo,
+    type: "Manhwa",
+    link: "/manga/sololeveling",
+  },
+];
 
-          <Card
-            className="m-1 mt-4"
-            style={{ width: "200px", height: "320px" }}
-          >
-            <Link to="/manga/ghoul">
-              <Card.Img
-                variant="top"
-                src={ghoul}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </Link>
-          </Card>
+const Home = () => {
+  return (
+    <div>
+      <section className="list">
+        {mangaList.map((manga, index) => (
+          <MangaCard key={index} {...manga} />
+        ))}
+      </section>
 
-          <Card
-            className="m-1 mt-4"
-            style={{ width: "200px", height: "320px" }}
-          >
-            <Link to="/manga/ghoul-re">
-              <Card.Img
-                variant="top"
-                src={ghoul2}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </Link>
-          </Card>
-        </CardGroup>
-      </Container>
-    );
-  }
-}
+      <div>
+        <h1 className="title-hot">Горячие Новинки</h1>
+      </div>
+
+      <section className="hot">
+        {mangaList.map((manga, index) => (
+          <MangaCard key={`hot-${index}`} {...manga} />
+        ))}
+      </section>
+    </div>
+  );
+};
+
+export default Home;

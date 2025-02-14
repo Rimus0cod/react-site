@@ -4,7 +4,7 @@ import "./css/MangaCard.css";
 const MangaCard = ({ title, image, readLink, bookmarkId }) => {
   return (
     <section className="name">
-      <article className="card">
+      <article className="card-man">
         <img className="card-img" src={image} alt={title} />
         <a className="read" href={readLink}>
           <span>Читать</span>

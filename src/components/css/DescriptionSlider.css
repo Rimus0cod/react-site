@@ -29,10 +29,11 @@
 }
 
 .slider-content {
-  display: none;
-  padding: 20px; /* Внутренние отступы для текста */
-  min-height: 225px;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px; /* Ограничь высоту */
 }
+
 
 .slider-content.active {
   display: block;
@@ -41,11 +42,13 @@
 }
 
 .disc {
+  overflow: auto;
   text-decoration: underline;
   color: #c9c9c9;
 }
 
 .normis-text {
+  overflow: auto;
   font-size: 16px;
   overflow: hidden;
   opacity: 1;
@@ -55,10 +58,19 @@
 }
 
 .hidden-text {
+  overflow: auto;
   display: none;
   opacity: 1;
   transition: 0.3s;
   scrollbar-width: 300;
+}
+
+.discrip {
+  min-height: 50px; /* Задай нужную высоту */
+  overflow-y: auto; /* Включи вертикальный скролл */
+  padding: 10px;
+  border: 1px solid #ccc;
+  position: relative;
 }
 
 .hidden {
@@ -124,7 +136,7 @@
   color: #007bff;
 }
 
-#chapter-list {
+.chapter-list {
   max-height: 150px; /* Высота контейнера */
   overflow-y: auto; /* Включение вертикальной прокрутки */
   display: flex;
@@ -136,7 +148,7 @@
   scrollbar-width: none;
 }
 
-#reverse-list {
+.reverse-list {
   max-width: 24%;
   text-align: start;
   margin-top: 10px;
@@ -150,11 +162,11 @@
   position: relative;
 }
 
-#reverse-list:hover {
+.reverse-list:hover {
   color: #1976d2;
 }
 
-#reverse-list::before {
+.reverse-list::before {
   content: "";
   position: absolute;
   top: 100%;
@@ -165,6 +177,6 @@
   transition: 0.3s;
 }
 
-#reverse-list:hover::before {
+.reverse-list:hover::before {
   width: 100%;
 }
