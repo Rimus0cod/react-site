@@ -14,12 +14,13 @@ function App() {
       setMangaData({
         title: "Tokyo Ghoul",
         image: solo,
-        readLink: "./chapters/tokyo-ghoul/1/index.html",
+        readLink: "./tokyo-ghoul/1",
         bookmarkId: "2",
         chapters: 145,
         status: "Закончен",
         translation: "Закончен",
         ageRating: "18",
+        mangaSlug: "tokyo-ghoul",
         genres: [
           "Боевик",
           "Драма",
@@ -83,6 +84,7 @@ function App() {
       <DescriptionSlider
         description={mangaData.description}
         totalChapters={mangaData.chapters}
+        mangaSlug={mangaData.mangaSlug}
       />
     </div>
   );

@@ -20,6 +20,7 @@ function App() {
         status: "Закончен",
         translation: "Закончен",
         ageRating: "18",
+        mangaSlug: "tokyo-ghoul:re",
         genres: [
           "Боевик",
           "Приключения",
@@ -61,6 +62,7 @@ function App() {
       <DescriptionSlider
         description={mangaData.description}
         totalChapters={mangaData.chapters}
+        mangaSlug={mangaData.mangaSlug}
       />
     </div>
   );

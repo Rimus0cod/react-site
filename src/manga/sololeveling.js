@@ -14,12 +14,13 @@ function App() {
       setMangaData({
         title: "Solo Leveling",
         image: solo,
-        readLink: "./chapters/sololeveling/1/index.html",
+        readLink: "./sololeveling/1",
         bookmarkId: "1",
         chapters: 205,
         status: "Закончен",
         translation: "Закончен",
         ageRating: "18",
+        mangaSlug: "sololeveling",
         genres: ["Боевик", "Драма", "Игра", "Магия", "Монстры", "Приключения"],
         description: `
         Центральный персонаж манхвы, Сун Джин-Ву, является Охотником E-ранга, что делает его одним из самых слабых охотников. 
@@ -65,6 +66,7 @@ function App() {
       <DescriptionSlider
         description={mangaData.description}
         totalChapters={mangaData.chapters}
+        mangaSlug={mangaData.mangaSlug}
       />
     </div>
   );

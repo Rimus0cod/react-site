@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./css/DescriptionSlider.css";
 
-const DescriptionSlider = ({ description, totalChapters }) => {
-  const [activeTab, setActiveTab] = useState("description"); // Табы
-  const [showMore, setShowMore] = useState(false); // Описание (скрыто/показано)
-  const [chapters, setChapters] = useState([]); // Список глав
-  const [isReversed, setIsReversed] = useState(false); // Реверс списка
-  const [loadedChapters, setLoadedChapters] = useState(0); // Кол-во загруженных глав
+const DescriptionSlider = ({ description, totalChapters, mangaSlug }) => {
+  const [activeTab, setActiveTab] = useState("description");
+  const [showMore, setShowMore] = useState(false);
+  const [chapters, setChapters] = useState([]);
+  const [isReversed, setIsReversed] = useState(false);
+  const [loadedChapters, setLoadedChapters] = useState(0);
 
-  const chaptersPerLoad = 10; // Сколько глав загружаем за раз
+  const chaptersPerLoad = 10;
 
-  // Загрузка глав
+  // Загружаем главы
   const loadChapters = useCallback(
     (reset = false) => {
-      if (!totalChapters) return; // Ждём, пока не появится totalChapters
+      if (!totalChapters || !mangaSlug) return; // Проверяем, что есть данные
 
       let start = reset ? (isReversed ? totalChapters : 1) : loadedChapters + 1;
       let end = Math.min(
@@ -31,7 +31,7 @@ const DescriptionSlider = ({ description, totalChapters }) => {
       ) {
         newChapters.push({
           id: i,
-          link: `./chapters/${i}/index.html`,
+          link: `/manga/${mangaSlug}/${i}`, // Генерируем правильную ссылку
         });
       }
 
@@ -40,19 +40,17 @@ const DescriptionSlider = ({ description, totalChapters }) => {
         reset ? chaptersPerLoad : prev + chaptersPerLoad
       );
     },
-    [isReversed, loadedChapters, totalChapters]
+    [isReversed, loadedChapters, totalChapters, mangaSlug]
   );
 
-  // Загружаем главы, когда totalChapters изменяется
   useEffect(() => {
     if (totalChapters > 0) {
       loadChapters(true);
     }
-  }, [totalChapters, isReversed]);
+  }, [totalChapters, isReversed, mangaSlug]);
 
   return (
     <div className="slider-container">
-      {/* Табы */}
       <div className="slider-tabs">
         <div
           className={`slider-tab ${
@@ -70,7 +68,6 @@ const DescriptionSlider = ({ description, totalChapters }) => {
         </div>
       </div>
 
-      {/* Описание */}
       {activeTab === "description" && (
         <div className="slider-content">
           <h2 className="disc">Описание</h2>
@@ -87,27 +84,13 @@ const DescriptionSlider = ({ description, totalChapters }) => {
         </div>
       )}
 
-      {/* Главы */}
       {activeTab === "chapters" && (
         <div className="slider-content">
           <h1>Список глав</h1>
           <button id="reverse-list" onClick={() => setIsReversed(!isReversed)}>
             {isReversed ? "Показать с начала" : "Показать с конца"}
           </button>
-          <div
-            className="chapter-list"
-            id="chapter-list"
-            onScroll={(e) => {
-              if (
-                e.target.scrollHeight - e.target.scrollTop <=
-                e.target.clientHeight + 10
-              ) {
-                if (loadedChapters < totalChapters) {
-                  loadChapters();
-                }
-              }
-            }}
-          >
+          <div className="chapter-list" id="chapter-list">
             {chapters.length > 0 ? (
               chapters.map((chapter) => (
                 <div key={chapter.id} className="chapter">

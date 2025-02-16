@@ -10,12 +10,19 @@ import Ghoul from "./manga/ghoul";
 import Ghoul2 from "./manga/ghoul_re";
 import "./index.css";
 import "./App.css";
+import MangaReader from "./components/MangaReader";
+import MangaList from "./data/mangaData";
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/manga/:mangaId/:chapterNumber"
+          element={<MangaReader />}
+        />
         <Route path="/" element={<Home />} />
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/catalog" element={<Catalog />} />
